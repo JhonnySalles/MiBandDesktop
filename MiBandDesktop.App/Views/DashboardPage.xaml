@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="MiBandDesktop_App.Views.DashboardPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="Transparent"
+    mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Padding="32" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Cabeçalho -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Dashboard" Style="{ThemeResource TitleTextBlockStyle}" FontWeight="Bold" />
+                    <TextBlock Text="{x:Bind ViewModel.DeviceStatus, Mode=OneWay}"
+                               Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="13" />
+                    <TextBlock Text="{x:Bind ViewModel.StatusMessage, Mode=OneWay}"
+                               Foreground="#3B82F6" FontSize="12" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                    <Button Content="Atualizar Dados" Command="{x:Bind ViewModel.RefreshCommand}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="F5" />
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Content="Sincronizar Pulseira (BLE)" Style="{ThemeResource AccentButtonStyle}"
+                            Command="{x:Bind ViewModel.SyncNowCommand}" />
+                </StackPanel>
+            </Grid>
+
+            <!-- Grid de 7 Cards KPI -->
+            <Grid Grid.Row="1" ColumnSpacing="12" RowSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Passos -->
+                <Border Grid.Row="0" Grid.Column="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Passos Hoje" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                        <TextBlock Text="{x:Bind ViewModel.StepsToday, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#3B82F6" />
+                        <ProgressBar Value="{x:Bind ViewModel.StepGoalPercent, Mode=OneWay}" Maximum="100" />
+                        <TextBlock Text="{x:Bind ViewModel.StepDetails, Mode=OneWay}" FontSize="11" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Frequência Cardíaca -->
+                <Border Grid.Row="0" Grid.Column="1" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Frequência Cardíaca" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                        <TextBlock Text="{x:Bind ViewModel.HeartRate, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#EF4444" />
+                        <TextBlock Text="{x:Bind ViewModel.HeartRateSubtitle, Mode=OneWay}" FontSize="11" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Calorias -->
+                <Border Grid.Row="0" Grid.Column="2" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Calorias Queimadas" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                        <TextBlock Text="{x:Bind ViewModel.Calories, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#F59E0B" />
+                        <ProgressBar Value="{x:Bind ViewModel.CaloriesGoalPercent, Mode=OneWay}" Maximum="100" />
+                        <TextBlock Text="{x:Bind ViewModel.CaloriesSubtitle, Mode=OneWay}" FontSize="11" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Bateria -->
+                <Border Grid.Row="0" Grid.Column="3" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Bateria" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                        <TextBlock Text="{x:Bind ViewModel.BatteryLevel, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#22C55E" />
+                        <ProgressBar Value="{x:Bind ViewModel.BatteryPercent, Mode=OneWay}" Maximum="100" />
+                        <TextBlock Text="{x:Bind ViewModel.BatterySubtitle, Mode=OneWay}" FontSize="11" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- SpO2 -->
+                <Border Grid.Row="1" Grid.Column="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Oxigênio no Sangue" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                        <TextBlock Text="{x:Bind ViewModel.Spo2, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#06B6D4" />
+                        <TextBlock Text="{x:Bind ViewModel.Spo2Subtitle, Mode=OneWay}" FontSize="11" Foreground="#22C55E" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Estresse -->
+                <Border Grid.Row="1" Grid.Column="1" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Nível de Estresse" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                        <TextBlock Text="{x:Bind ViewModel.Stress, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#A855F7" />
+                        <TextBlock Text="{x:Bind ViewModel.StressSubtitle, Mode=OneWay}" FontSize="11" Foreground="#22C55E" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Border>
+
+                <!-- PAI -->
+                <Border Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="6">
+                        <TextBlock Text="Pontuação PAI" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                        <TextBlock Text="{x:Bind ViewModel.Pai, Mode=OneWay}" FontSize="24" FontWeight="Bold" Foreground="#EAB308" />
+                        <TextBlock Text="{x:Bind ViewModel.PaiSubtitle, Mode=OneWay}" FontSize="11" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Card de Clima e Próximas Sincronizações -->
+            <Grid Grid.Row="2" ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Clima Atual -->
+                <Border Grid.Column="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="20">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Clima &amp; Previsão do Tempo" FontWeight="SemiBold" FontSize="16" />
+                        <StackPanel Orientation="Horizontal" Spacing="16" VerticalAlignment="Center">
+                            <TextBlock Text="{x:Bind ViewModel.WeatherTemp, Mode=OneWay}" FontSize="36" FontWeight="Bold" VerticalAlignment="Center" />
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="{x:Bind ViewModel.WeatherCity, Mode=OneWay}" FontWeight="SemiBold" FontSize="15" />
+                                <TextBlock Text="{x:Bind ViewModel.WeatherCondition, Mode=OneWay}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                                <TextBlock Text="{x:Bind ViewModel.WeatherDetails, Mode=OneWay}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="11" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- Próximas Sincronizações -->
+                <Border Grid.Column="1" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="20">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Próximas Sincronizações" FontWeight="SemiBold" FontSize="16" />
+                        <TextBlock Text="{x:Bind ViewModel.SyncIntervalDescription, Mode=OneWay}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                        <ItemsControl ItemsSource="{x:Bind ViewModel.ScheduledTimes, Mode=OneWay}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="6" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate x:DataType="x:String">
+                                    <Border Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" CornerRadius="12" Padding="8,4">
+                                        <TextBlock Text="{x:Bind}" FontSize="11" FontWeight="SemiBold" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Page>

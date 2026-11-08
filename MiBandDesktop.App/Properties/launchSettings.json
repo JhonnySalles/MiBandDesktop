@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "MiBandDesktop.App": {
+      "commandName": "Project"
+    }
+  }
+}

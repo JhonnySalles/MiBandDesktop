@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="MiBandDesktop_App.Views.BandSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="Transparent"
+    mc:Ignorable="d">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Padding="32" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Spacing="4">
+                <TextBlock Text="Configurações da Pulseira" Style="{ThemeResource TitleTextBlockStyle}" FontWeight="Bold" />
+                <TextBlock Text="Alarmes, relógio mundial, lembretes, gestos de pulso e metas de atividade"
+                           Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="13" />
+            </StackPanel>
+
+            <!-- Cards de Alarmes e Relógio -->
+            <Grid Grid.Row="1" ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Alarmes -->
+                <Border Grid.Column="0" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Alarmes da Pulseira (Até 10)" FontWeight="SemiBold" FontSize="16" />
+                        <TextBlock Text="Gerencie os despertadores configurados no dispositivo." Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                        <Button Content="Ler Alarmes da Pulseira" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Relógio Mundial -->
+                <Border Grid.Column="1" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Relógio Mundial" FontWeight="SemiBold" FontSize="16" />
+                        <TextBlock Text="Adicione cidades internacionais para consulta no display." Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}" FontSize="12" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Ajustes de Hardware -->
+            <Border Grid.Row="2" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="8" Padding="16">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Preferências de Uso" FontWeight="SemiBold" FontSize="16" />
+                    <ComboBox Header="Localização no Pulso" SelectedIndex="0">
+                        <ComboBoxItem Content="Pulso Esquerdo" />
+                        <ComboBoxItem Content="Pulso Direito" />
+                    </ComboBox>
+                    <ComboBox Header="Levantar o Pulso para Ver Hora" SelectedIndex="1">
+                        <ComboBoxItem Content="Desativado" />
+                        <ComboBoxItem Content="O Dia Todo" />
+                        <ComboBoxItem Content="Programado" />
+                    </ComboBox>
+                    <Button Content="Salvar &amp; Sincronizar Tudo" Style="{ThemeResource AccentButtonStyle}" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>
+

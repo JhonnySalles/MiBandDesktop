@@ -1,0 +1,82 @@
+## ===================================================================
+## Build & Compilation Outputs
+## ===================================================================
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+ARM/
+ARM64/
+artifacts/
+publish/
+PublishScripts/
+Generated\ Files/
+*_wpftmp.csproj
+
+## ===================================================================
+## Visual Studio & IDEs
+## ===================================================================
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+*.dotCover
+_ReSharper*/
+.idea/
+.vscode/
+*.swp
+*.*~
+
+## ===================================================================
+## MSIX / WinUI / Windows App SDK Packaging
+## ===================================================================
+AppPackages/
+BundleArtifacts/
+Package.StoreAssociation.xml
+*.msix
+*.msixupload
+*.msixbundle
+*.appx
+*.appxbundle
+*.appxupload
+
+## ===================================================================
+## Logs & Diagnostic Files
+## ===================================================================
+*.log
+*.binlog
+[Ll]og/
+[Ll]ogs/
+xaml_error.log
+
+## ===================================================================
+## Test Results & Code Coverage
+## ===================================================================
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+## ===================================================================
+## NuGet Packages & Caches
+## ===================================================================
+*.nupkg
+*.snupkg
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.assets.json
+
+## ===================================================================
+## Operating System Files
+## ===================================================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
